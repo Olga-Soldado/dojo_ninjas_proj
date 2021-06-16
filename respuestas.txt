@@ -1,0 +1,46 @@
+python manage.py makemigrations 
+python manage.py migrate
+python manage.py shell -i ipython
+from dojo_ninjas_app.models import *
+
+Dojo.objects.create(name="Dojo 1", city="Temuco", state="Cautin")
+Dojo.objects.create(name="Dojo 2", city="Nueva Imperial", state="Cautin")
+Dojo.objects.create(name="Dojo 3", city="Lonquimay", state="Malleco")
+
+Dojo.objects.get(id=1).delete()
+Dojo.objects.get(id=2).delete()
+Dojo.objects.get(id=3).delete()
+
+Dojo.objects.create(name="New Dojo 1", city="Temuco", state="Cautin")
+Dojo.objects.create(name="New Dojo 2", city="Nueva Imperial", state="Cautin")
+Dojo.objects.create(name="New Dojo 3", city="Lonquimay", state="Malleco")
+
+primer_dojo = Dojo.objects.get(id=4)
+Ninja.objects.create(first_name="Alex", last_name="Muñoz", Dojo_id=primer_dojo)
+Ninja.objects.create(first_name="Olga", last_name="Soldado", Dojo_id=primer_dojo)
+Ninja.objects.create(first_name="Fernando", last_name="Muñoz", Dojo_id=primer_dojo)
+
+segundo_dojo = Dojo.objects.get(id=5)
+Ninja.objects.create(first_name="Jesus", last_name="Lopez", Dojo_id=segundo_dojo)
+Ninja.objects.create(first_name="Valentina", last_name="Lobos", Dojo_id=segundo_dojo)
+Ninja.objects.create(first_name="Alexi", last_name="Peña", Dojo_id=segundo_dojo)
+
+tercer_dojo = Dojo.objects.get(id=6)
+Ninja.objects.create(first_name="Johanna", last_name="Suarez", Dojo_id=tercer_dojo)
+Ninja.objects.create(first_name="Lily", last_name="Simmons", Dojo_id=tercer_dojo)
+Ninja.objects.create(first_name="Jacobo", last_name="Bensan", Dojo_id=tercer_dojo)
+
+Dojo.objects.first().ninjas.all()
+Dojo.objects.first().ninjas.all().values()
+
+Dojo.objects.last().ninjas.all()
+Dojo.objects.last().ninjas.all().values()
+
+Ninja.objects.last().Dojo_id
+
+python manage.py makemigrations >> 1 >> 'dojo antiguo'
+python manage.py migrate
+python manage.py shell -i ipython
+from dojo_ninjas_app.models import *
+
+Dojo.objects.create(name="Cordillera",city="Angol",state="Malleco",desc="Dojo ubicado en la zona cordillerana de la IX de la araucania")
